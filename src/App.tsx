@@ -69,6 +69,12 @@ function App() {
     } else {
       setInputValue(val);
     }
+
+    if (!validateArithmaticEquation([...value, val])) {
+      setIsError(true);
+      setCalculation(0);
+      return;
+    }
   };
 
   const arithmeticOperation = (operationString: string) => {
@@ -82,9 +88,9 @@ function App() {
 
   const handleAutoCompleteChange = (event: any, newValue: string[]) => {
     setValue(newValue);
-
     if (!validateArithmaticEquation(newValue)) {
       setIsError(true);
+      setCalculation(0);
       return;
     }
 
