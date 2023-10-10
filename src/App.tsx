@@ -51,7 +51,13 @@ function App() {
       return suggestions.filter((x) => x.label === label)[0]?.value ?? 0;
     });
 
-    return operationString.join(" ");
+    let result = operationString.join(" ");
+    if (result.length > 0) {
+      if (operators.includes(result[result.length - 1])) {
+        result = result.substring(0,result.length - 1);
+      }
+    }
+    return result;
   };
 
   const handleInputChange = (val: string) => {
